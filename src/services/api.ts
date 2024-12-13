@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { PokemonListResponse } from '@/types/Pokemon'
+import type { Pokemon, PokemonListResponse } from '@/types/Pokemon'
 
 class pokeApi {
   private client
@@ -12,6 +12,21 @@ class pokeApi {
 
   async listPokemons(offset: number, limit: number): Promise<PokemonListResponse> {
     return this.client.get<PokemonListResponse>(`/pokemon?offset=${offset}&limit=${limit}`)
+      .then(response => response.data);
+  }
+
+  async fetchPokemon(name: string) {
+    return this.client.get(`/pokemon/${name}`)
+      .then(response => response.data);
+  }
+
+  async fetchPokemonSpecies(id: int) {
+    return this.client.get(`/pokemon-species/${id}`)
+      .then(response => response.data);
+  }
+
+  async fetchPokemonChain(url: string) {
+    return this.client.get(url)
       .then(response => response.data);
   }
 }

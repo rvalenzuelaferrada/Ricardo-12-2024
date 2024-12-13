@@ -14,11 +14,19 @@ export function usePokemonList() {
       const data = await api.listPokemons(offset.value, limit.value)
 
       pokemons.value = [...pokemons.value, ...data.results]
+
+      //llamar api al detalle de cada pokemon
+      for (const pokemon of pokemons.value) {
+        const data = await api.fetchPokemon(pokemon.name)
+        const index = pokemons.value.findIndex(p => p.name === pokemon.name)
+        pokemons.value[index] = data
+      }
     } catch (err: unknown) {
       console.log(err)
       error.value = (err as Error).message
     } finally {
       isLoading.value = false
+      offset.value += limit.value
     }
   }
 

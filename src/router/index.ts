@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import TeamView from '../views/TeamView.vue'
+import TeamDetailView from '../views/TeamDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +19,16 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/team',
+      name: 'team',
+      component: TeamView,
+    },
+    {
+      path: '/team/:id',
+      name: 'team-detail',
+      component: TeamDetailView,
+    }
   ],
 })
 
