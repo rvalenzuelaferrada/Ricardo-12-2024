@@ -28,7 +28,7 @@ export const useTeamStore = defineStore('team', {
 
     addPokemon(pokemon: Pokemon) {
         if (this.team.length >= 6) {
-          throw new Error('Team is full')
+          throw new Error('La pokedex no puede tener más de 6 pokemones.')
         }
 
         this.team.push(pokemon)

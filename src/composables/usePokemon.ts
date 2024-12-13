@@ -21,7 +21,7 @@ export function usePokemon() {
     }
   };
 
-  const getPokemonChain = async (name: string | RouteParamValue[]) => {
+  const getPokemonChain = async () => {
     loading.value = true;
     error.value = null;
 
